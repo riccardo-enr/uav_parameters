@@ -1,3 +1,10 @@
+# Clone the repo
+
+Clone only the `config` folder.
+```bash
+git clone https://github.com/riccardo-enr/uav_parameters.git
+```
+
 ## Repository structure
 
 ```bash
