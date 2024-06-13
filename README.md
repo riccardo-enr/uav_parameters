@@ -1,3 +1,11 @@
+## Repository structure
+
+```bash
+uav_parameters/
+└── config/
+    └── params.yaml
+```
+
 ## Reading the parameters in a ROS 2/C++ node
 
 ```cpp
@@ -21,22 +29,20 @@ this->get_parameter("uav.parameters.num_of_arms", num_of_arms);
 ## Reading parameters on MATLAB
 
 ```matlab
-params = readstruct('config/<params>.yaml');
+% Load the parameters from the YAML file
+params = readstruct('config/params.yaml');
 
 % Access the parameters
-mass = params.uav.mass;
-max_speed = params.uav.max_speed;
-sensor_range = params.uav.sensor_range;
-autopilot_enabled = params.uav.autopilot.enabled;
-kp = params.uav.autopilot.gains.kp;
-ki = params.uav.autopilot.gains.ki;
-kd = params.uav.autopilot.gains.kd;
+uav_name = params.uav.name;
+uav_mass = params.uav.parameters.uav_mass;
+num_of_arms = params.uav.parameters.num_of_arms;
+arm_length = params.uav.parameters.arm_length;
+... other params ...
+PWM_MIN = params.uav.parameters.PWM_MIN;
+PWM_MAX = params.uav.parameters.PWM_MAX;
+input_scaling = params.uav.parameters.input_scaling;
+zero_position_armed = params.uav.parameters.zero_position_armed;
+gravity = params.environment.parameters.gravity;
 
-% Display the parameters
-disp('UAV Parameters:');
-disp(['Mass: ', num2str(mass)]);
-disp(['Max Speed: ', num2str(max_speed)]);
-disp(['Sensor Range: ', num2str(sensor_range)]);
-disp(['Autopilot Enabled: ', num2str(autopilot_enabled)]);
-disp(['Gains - kp: ', num2str(kp), ', ki: ', num2str(ki), ', kd: ', num2str(kd)]);
+...
 ```
